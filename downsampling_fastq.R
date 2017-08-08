@@ -8,12 +8,14 @@ newmatrix[(seq(2,dim(newmatrix)[1],4)),1] <- linenos[,1]+1
 newmatrix[(seq(3,dim(newmatrix)[1],4)),1] <- linenos[,1]+2
 newmatrix[(seq(4,dim(newmatrix)[1],4)),1] <- linenos[,1]+3
 
-
-
-
 rm(linenos)
 
-file <- as.matrix(fread("filename"))
+filename <- as.matrix(read.table("filename"))
+
+file <- as.matrix(fread(filename,integer64="character"))
+
+
+
 
 output <- file[as.numeric(newmatrix[,1]),]
 
