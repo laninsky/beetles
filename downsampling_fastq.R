@@ -22,6 +22,6 @@ print("I have read in your fastq file")
 
 output <- fastqfile[as.numeric(newmatrix[,1]),]
 
-write.table(output, "downsampled.fastq",quote=FALSE, col.names=FALSE,row.names=FALSE)
+write.table(output, "downsampled.fastq",quote=FALSE, col.names=FALSE,row.names=FALSE,append=TRUE)
 
 print("I have downsampled your fastq file and written it as downsampled.fastq")
