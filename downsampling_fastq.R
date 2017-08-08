@@ -15,6 +15,6 @@ rm(linenos)
 
 file <- as.matrix(fread("filename"))
 
-output <- file[newmatrix[,1],]
+output <- file[as.numeric(newmatrix[,1]),]
 
 write.table(output, "downsampled.fastq",quote=FALSE, col.names=FALSE,row.names=FALSE)
