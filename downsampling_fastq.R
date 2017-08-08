@@ -12,11 +12,11 @@ rm(linenos)
 
 filename <- as.matrix(read.table("filename"))
 
-file <- as.matrix(fread(filename,integer64="character"))
+fastqfile <- as.matrix(fread(filename,integer64="character"))
 
 
 
 
-output <- file[as.numeric(newmatrix[,1]),]
+output <- fastqfile[as.numeric(newmatrix[,1]),]
 
 write.table(output, "downsampled.fastq",quote=FALSE, col.names=FALSE,row.names=FALSE)
