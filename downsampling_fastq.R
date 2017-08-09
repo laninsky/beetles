@@ -16,7 +16,7 @@ print("I have calculated the line numbers that I need to subsample from your fas
 
 filename <- as.matrix(read.table("filename"))
 
-fastqfile <- as.matrix(fread(filename,integer64="numeric"))
+fastqfile <- as.matrix(fread(filename,integer64="character",sep="\n"))
 
 print("I have read in your fastq file")
 
