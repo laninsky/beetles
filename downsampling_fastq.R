@@ -1,6 +1,6 @@
 library(data.table)
 
-linenos <- as.matrix(fread("linestosample",integer64="numeric"))
+linenos <- as.matrix(fread("linestosample",integer64="numeric",header=FALSE))
 
 print("I have read in the line numbers of the sequence titles")
 
@@ -16,7 +16,7 @@ print("I have calculated the line numbers that I need to subsample from your fas
 
 filename <- as.matrix(read.table("filename"))
 
-fastqfile <- as.matrix(fread(filename,integer64="character",sep="\n"))
+fastqfile <- as.matrix(fread(filename,integer64="character",sep="\n",header=FALSE))
 
 print("I have read in your fastq file")
 
