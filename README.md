@@ -19,3 +19,11 @@ If you get the following message:
 "You will need to split your fastq file in two to proceed as it has too many lines to be read in by R"
 
 You'll need to use split_downsampling_fastq.sh instead of downsampling_fastq.sh. The Rscript should remain the same.
+
+## Version history
+This code was used for: Gustafson, G.T., Alexander, A., Sproul, J.S., Pflug, J.M., Maddison, D.R. and Short, A.E., 2019. Ultraconserved element (UCE) probe set design: Base genome and initial design parameters critical for optimization. Ecology and Evolution.
+
+This script wouldn't be possible without:  
+R: R Core Team. 2015. R: A language and environment for statistical computing. URL http://www.R-project.org/. R Foundation for Statistical Computing, Vienna, Austria. https://www.r-project.org/  
+
+Matt Dowle and Arun Srinivasan data.table: Extension of `data.frame`. R package version 1.12.0. https://CRAN.R-project.org/package=data.table
