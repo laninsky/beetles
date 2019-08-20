@@ -5,7 +5,7 @@ As arguments it expects:
 * the path to a folder containing fasta files, 'fasta_location'
 * The location where you want to put the downsampled datasets, 'output_dir'
 * The number of replicate downsampled datasets you want to create, 'reps'
-* The number of loci you want to downsample to, 'loci_per_rep'
+* The number of loci you want to downsample to, 'loci_per_rep'  
 e.g.  
 generate_downsampled(fasta_location,output_dir,reps,loci_per_rep)
 
