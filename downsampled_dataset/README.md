@@ -13,7 +13,7 @@ Example usage:
 ```
 generate_downsampled("/Users/alanaalexander/Dropbox/UCE_data_for_Alana/50perc_data_matrix/50perc_internal_fasta","/Users/alanaalexander/Dropbox/beetles/75_downsamples",100,305)
 ```
-This would create 100 replicate folders within '/Users/alanaalexander/Dropbox/beetles/75_downsamples' each containing 305 fasta files sampled from the total number of fasta files available at '/Users/alanaalexander/Dropbox/UCE_data_for_Alana/50perc_data_matrix/50perc_internal_fasta'
+This would create 100 replicate folders within `/Users/alanaalexander/Dropbox/beetles/75_downsamples` each containing 305 fasta files sampled from the total number of fasta files available at `/Users/alanaalexander/Dropbox/UCE_data_for_Alana/50perc_data_matrix/50perc_internal_fasta`
 
 # Version history  
 v0.0: the code used in Beetles TBD, where generate_downsampled was first published.
