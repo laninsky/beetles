@@ -18,7 +18,7 @@ This would create 100 replicate folders within `/Users/alanaalexander/Dropbox/be
 # Version history  
 v0.0: the code used in Beetles TBD, where generate_downsampled was first published.
 
-If you want to cite the specific version of the script you used, I suggest the following:
+If you want to cite the specific version of the script you used, I suggest the following as well as the pub above:  
 Alexander, A. 2019. downsampled_dataset vx.x. Available from https://github.com/laninsky/beetles/new/master/downsampled_dataset
 
 This script wouldn't be possible without:  
