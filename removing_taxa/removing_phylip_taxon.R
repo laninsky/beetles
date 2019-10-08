@@ -1,13 +1,13 @@
-removing_phylip_taxon <- function(working_dir,taxon_name) {
+removing_phylip_taxon <- function(phylip_dir,taxon_name) {
   cat("This function takes a folder of phylip files and writes out new versions of them removing a defined taxon\n")
-  cat("Run this function by: removing_phylip_taxon(working_dir,taxon_name)\n")
-  cat("Where working_dir = the path to a folder containing your phylip files and taxon_name the name of the taxon you wish to remove from the phylip files\n")
+  cat("Run this function by: removing_phylip_taxon(phylip_dir,taxon_name)\n")
+  cat("Where phylip_dir = the path to a folder containing your phylip files and taxon_name the name of the taxon you wish to remove from the phylip files\n")
   cat('e.g. removing_phylip_taxon("/Users/alanaalexander/Dropbox/UCE_data_for_Alana/Spanglerogyrus_removal/50perc_phylip_alignments_w_Spangy","sle1702_sp")\n')
-  cat("Your new phylip files will be written out to a folder in your directory called taxon_name_removed\n")
+  cat("Your new phylip files will be written out to a folder in your current directory called taxon_name_removed\n")
   cat("e.g. sle1702_sp_removed\n")
   
   # getting a list of the files from the folder which match a phylip file
-  file_list <- list.files(working_dir, pattern=".phy*")
+  file_list <- list.files(phylip_dir, pattern=".phy*")
   
   # creating output directory
   dir.create(paste(taxon_name,"_removed",sep=""))
@@ -16,7 +16,7 @@ removing_phylip_taxon <- function(working_dir,taxon_name) {
   for (i in file_list) {
     
     # Reading in the file
-    tempfile <- readLines(file.path(working_dir,i))
+    tempfile <- readLines(file.path(phylip_dir,i))
     
     # Getting the total number of taxa in the file
     no_taxa <- unlist(strsplit(tempfile[1], " "))
