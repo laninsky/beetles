@@ -4,7 +4,7 @@ removing_phylip_taxon <- function(working_dir,taxon_name) {
   cat("Where working_dir = the path to a folder containing your phylip files and taxon_name the name of the taxon you wish to remove from the phylip files\n")
   cat('e.g. removing_phylip_taxon("/Users/alanaalexander/Dropbox/UCE_data_for_Alana/Spanglerogyrus_removal/50perc_phylip_alignments_w_Spangy","sle1702_sp")\n')
   cat("Your new phylip files will be written out to a folder in your directory called taxon_name_removed\n")
-  cat("e.g. sle1702_sp_removed")
+  cat("e.g. sle1702_sp_removed\n")
   
   # getting a list of the files from the folder which match a phylip file
   file_list <- list.files(working_dir, pattern=".phy*")
