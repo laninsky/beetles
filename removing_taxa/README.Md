@@ -2,10 +2,10 @@
 The Rscript in this repository, removing_phylip_taxon.R, contains a function that can be used to output phylip files after removing a specific taxon. To use, either download and source the script in your R console, or copy the function into your R console.  
 
 As arguments it expects:  
-the path to a folder containing phylip files, 'working_dir'  
+the path to a folder containing phylip files, 'phylip_dir'  
 the taxon you want to remove, 'taxon_name'  
 e.g.  
-`removing_phylip_taxon(working_dir,taxon_name) ` 
+`removing_phylip_taxon(phylip_dir,taxon_name) ` 
 
 Example usage:  
 `removing_phylip_taxon("/Users/alanaalexander/Dropbox/UCE_data_for_Alana/Spanglerogyrus_removal/50perc_phylip_alignments_w_Spangy","sle1702_sp")`
