@@ -46,7 +46,7 @@ removing_phylip_taxon <- function(phylip_dir,taxon_name) {
     }  
     
     # Removing taxon
-    tempfile[-which(grepl(taxon_name,tempfile))]
+    tempfile <- tempfile[-which(grepl(taxon_name,tempfile))]
     
     # Adjusting number of taxa in first line
     tempfile[1] <- gsub(paste(no_taxa," ",sep=""),paste(no_taxa-1," ",sep=""),tempfile[1])
