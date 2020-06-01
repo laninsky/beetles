@@ -3,7 +3,7 @@ library(tidyverse)
 
 # For filtering step, how many taxa can a locus be missing from and still
 # incorporated in the final dataset?
-allowed_taxa_drops <- 1
+allowed_taxa_drops <- 2
 
 # If the pipeline has been run before and blast_search_results.txt exists in the directory
 # then reading it in
