@@ -58,3 +58,6 @@ From initial_blast_filter.R, a series of tab-delimited files:
 * completeness_filtered_uce_loci_atd_X.txt, where X = the number you specify for allowed_taxa_drops in initial_blast_filter.R line 6: The subset of loci from non_paralogous_uce_loci_blast_search.txt that were missing "good" blast matches to no more than X genomes.
 
 If initial files in the R pipeline have already been created in the directory this analysis is conducted in, they will not be recreated but read in from the directory instead.
+
+### Futher filtering
+filtering_for_specific_genomes.R allows you to specify on Line 5 any genomes that are required to be represented in the loci that make it through your filters. You can then also implement allowed_taxa_drops on Line 9 if you want to additionally filter for completeness.
