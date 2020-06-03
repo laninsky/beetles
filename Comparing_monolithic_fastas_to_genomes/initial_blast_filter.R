@@ -3,7 +3,7 @@ library(tidyverse)
 
 # For filtering step, how many taxa can a locus be missing from and still
 # incorporated in the final dataset?
-allowed_taxa_drops <- 2
+allowed_taxa_drops <- 1
 
 # If the pipeline has been run before and blast_search_results.txt exists in the directory
 # then reading it in
@@ -233,14 +233,15 @@ if ("non_paralogous_uce_loci_blast_search.txt" %in% list.files() & "paralogy_fil
   print("The nonparalogous loci have been written to non_paralogous_uce_loci_blast_search.txt")
 }
   
-  
-completeness_filter <- as_tibble(cbind(paralogy_filtered,(paralogy_filtered %>% unite(full_spp,2:length(ucegenome)) %>% select(full_spp)))) %>% mutate(no_taxa=0)
+completeness_filter <- as_tibble(cbind(paralogy_filtered,(paralogy_filtered %>% unite(full_spp,2:(length(ucegenome)+1)) %>% select(full_spp)))) %>% mutate(no_taxa=0)
 
 for (i in ucegenome) {
   completeness_filter <- completeness_filter %>% mutate(no_taxa=ifelse((grepl(i,full_spp)),no_taxa+1,no_taxa))
 }
 
 completeness_filter <- completeness_filter %>% select(-full_spp)
+
+completeness_filter %>% group_by(no_taxa) %>% count()
 
 # If the pipeline has been run before and blast_search_results.txt exists in the directory
 # then reading it in
