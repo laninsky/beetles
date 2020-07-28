@@ -60,4 +60,4 @@ From initial_blast_filter.R, a series of tab-delimited files:
 If initial files in the R pipeline have already been created in the directory this analysis is conducted in, they will not be recreated but read in from the directory instead.
 
 ### Futher filtering
-filtering_for_specific_genomes.R allows you to specify on Line 5 any genomes that are required to be represented in the loci that make it through your filters. You can then also implement allowed_taxa_drops on Line 9 if you want to additionally filter for completeness.
+filtering_for_specific_genomes.R allows you to specify on Line 5 any genomes that are required to be represented in the loci that make it through your filters. You can then also implement allowed_taxa_drops on Line 9 if you want to additionally filter for completeness (default 2). You also need to modify the location of your non_paralogous_uce_locu_blast_search.txt file on Line 12, and the location of your blast_search_results.txt file on Line 15
