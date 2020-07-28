@@ -6,7 +6,7 @@ required_genomes <- c("Helmac","Quaclu")
 
 # For completeness filtering step, how many taxa can a locus be missing from 
 # and still incorporated in the final dataset?
-allowed_taxa_drops <- 1
+allowed_taxa_drops <- 2
 
 # Reading in non-paralogous loci
 temp <- read_delim("/Users/alanaalexander/Dropbox/Hydrophilid_probe_design/blast_test/non_paralogous_uce_loci_blast_search.txt",delim="\t")
