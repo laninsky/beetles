@@ -8,13 +8,13 @@ Assumptions: taxa are named the same way in all of the uce files, and this match
 
 You'll need to modify the following lines of code at Line 9, 13, and 17 to point to the appropriate paths for your datasets:  
 
-*Pathway to the *uce_type_summary.txt file*
+*Pathway to the *uce_type_summary.txt file*  
 ```uce_summary_file_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/Coleoptera_Tricas_uce_type_summary.txt"```
 
-*Pathway to the phylip input files*
+*Pathway to the phylip input files*  
 ```phylip_w_missing_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/50perc_internal_w_missing_phylip"```
 
-*Where you would like the outfiles written to*
+*Where you would like the outfiles written to*  
 ```outfile_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/van_dam_concatenated"```
 
 Some examples of paths are given here, and also in the code.
