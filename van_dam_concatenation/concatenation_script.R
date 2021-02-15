@@ -6,16 +6,20 @@
 # the code should handle this OK
 
 # Pathway to the *uce_type_summary.txt file
-uce_summary_file_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/Coleoptera_Tricas_uce_type_summary.txt"
-#uce_summary_file_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/Adephaga_dataset/Adephaga_Tricas_uce_type_summary.txt"
+#uce_summary_file_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/Coleoptera_Tricas_uce_type_summary.txt"
+uce_summary_file_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/Adephaga_dataset/Adephaga_Tricas_uce_type_summary.txt"
 
 # Pathway to the phylip input files
-phylip_w_missing_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/50perc_internal_w_missing_phylip"
-#phylip_w_missing_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/Adephaga_dataset/50perc_internal_w_missing_phylip"
+#phylip_w_missing_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/50perc_internal_w_missing_phylip"
+phylip_w_missing_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/Adephaga_dataset/50perc_internal_w_missing_phylip"
 
 # Where you would like the outfiles written to
-outfile_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/van_dam_concatenated"
-#outfile_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/Adephaga_dataset/van_dam_concatenated"
+#outfile_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/van_dam_concatenated"
+outfile_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/Adephaga_dataset/van_dam_concatenated"
+
+# Pathway to the phylip files without missing data
+#phylip_without_missing_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/All_beetle_probeset_of_Faircloth/50perc_internal_phylip"
+phylip_without_missing_path <- "/Users/alanaalexander/Dropbox/UCE_characterization_data_Alana/Adephaga_dataset/50perc_internal_phylip"
 
 library(tidyverse)
 
@@ -91,28 +95,43 @@ for (i in unique(uce_summary$gene_name)) {
   }
   # What to do to write out this specific locus
   if (!(is.null(out_uce))) {
+    
+    # Filtering out taxa that are entirely composed of missing data
+    out_uce <- out_uce %>% mutate(missing_data=nchar(gsub("?","",seq_line,fixed=TRUE))) %>% filter(missing_data!=0)
+    
+    # Recalculating the number of missing taxa
+    numtaxa <- dim(out_uce)[1]
+    
+    # Getting the sequence length
     seq_length <- nchar(out_uce$seq_line[1])
     
+    # Calculating the number of characters to separate uce_taxa and seq_line
     num_spaces <- max(nchar(out_uce$uce_taxa))+1
     
+    # Pasting the names and sequence together
     to_write <- out_uce %>% 
       rowwise() %>% 
       mutate(spaces=paste(rep(" ",num_spaces-nchar(uce_taxa)),collapse="")) %>% 
       mutate(final_out=paste(uce_taxa,spaces,seq_line,collapse="")) %>% select(final_out)
     
+    # Adding the information line to the top
     to_write <- rbind(paste(" ",numtaxa," ",seq_length,collape=""),as.matrix(to_write$final_out))
     
+    # Writing out the data
     write.table(file=gsub(" ","",paste(outfile_path,"/",i,".phylip",collapse="")),x=to_write,quote=FALSE,col.names = FALSE,row.names = FALSE)
   }
 }
 
+# Writing out the list of files that has been concatenated
+write.table(file=gsub(" ","",paste(outfile_path,"/","loci_that_were_concatenated.txt",collapse="")),x=loci_to_not_copy,quote=FALSE,col.names = FALSE,row.names = FALSE)
+
 # Getting the list of loci to copy into the concatenated folder that AREN'T already represented in
 # the concatenated loci
-copy_list <- list.files(phylip_w_missing_path)[!(list.files(phylip_w_missing_path) %in% loci_to_not_copy)]
+copy_list <- list.files(phylip_without_missing_path)[!(list.files(phylip_without_missing_path) %in% loci_to_not_copy)]
 # Excluding anything that isn't a phylip
 copy_list <- copy_list[grep(pattern = "phylip",copy_list)]
 
 for (i in copy_list) {
-  file.copy(from = gsub(" ","",paste(phylip_w_missing_path,"/",i,collapse="")),to=gsub(" ","",paste(outfile_path,"/non_concat_loci",collapse="")))
+  file.copy(from = gsub(" ","",paste(phylip_without_missing_path,"/",i,collapse="")),to=gsub(" ","",paste(outfile_path,"/non_concat_loci",collapse="")))
 }
 
