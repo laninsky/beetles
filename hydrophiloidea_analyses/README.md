@@ -38,5 +38,24 @@ sort taxa_list.txt | uniq | wc -l
 
 mv taxa_list.txt ../
 ```
+Obtaining the 70% complete matrix from the 50% matrix
+```
+#!/bin/bash -e
 
-phyluce_align_get_only_loci_with_min_taxa --alignments abyss_50perc_nexus --taxa 64 --percent 0.5 --output 50perc_nexus --cores 12 --log-path logs
+#SBATCH -A uoo00105 
+#SBATCH -J 70_perc_matrix
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 15:00
+#SBATCH --mem=20G
+#SBATCH -D /nesi/nobackup/uoo00105/beetles
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+#SBATCH --qos=debug
+
+module load Miniconda3/4.9.2
+conda activate /nesi/nobackup/uoo00105/beetles/conda
+phyluce_align_get_only_loci_with_min_taxa --alignments abyss_50perc_nexus --taxa 63 --percent 0.7 --output 70perc_nexus --cores 12 --log-path logs
+```
