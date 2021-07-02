@@ -17,6 +17,11 @@ After finishing up:
 conda deactivate
 ```
 
+### Uploading data (50% complete matrix)
+```
+scp -r /Users/alanaalexander/Dropbox/beetles/hydrophilids_me/50perc_copied_from_harddrive/abyss_50perc_nexus mahuika:/nesi/nobackup/uoo00105/beetles
+```
+
 ### Running Phyluce 
 When logging in following the previous installation step:
 ```
