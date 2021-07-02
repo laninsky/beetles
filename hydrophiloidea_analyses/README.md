@@ -28,3 +28,15 @@ When logging in following the previous installation step:
 module load Miniconda3/4.9.2
 conda activate /nesi/nobackup/uoo00105/beetles/conda
 ```
+Obtaining the complete list of taxa present across these files
+```
+for i in *.nexus;
+  do tail -n+6 $i | head -n-2 | cut -d " " -f 1 >> taxa_list.txt;
+done
+
+sort taxa_list.txt | uniq | wc -l
+
+mv taxa_list.txt ../
+```
+
+phyluce_align_get_only_loci_with_min_taxa --alignments abyss_50perc_nexus --taxa 64 --percent 0.5 --output 50perc_nexus --cores 12 --log-path logs
