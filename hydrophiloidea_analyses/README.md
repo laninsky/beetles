@@ -136,5 +136,34 @@ raxmlHPC-PTHREADS-SSE3 -s 70perc_raxml.phylip -n run1 -m GTRCATI -f a -N 100 -x 
 Installing exabayes
 ```
 wget https://cme.h-its.org/exelixis/resource/download/software/exabayes-1.5.1.tar.gz
+module load GCC/9.2.0
+tar -zvxf exabayes-1.5.1.tar.gz
+rm exabayes-1.5.1.tar.gz
 ```
-Bayesian inference was conducted only on the unpartitioned datasets via exabayes 1.5 (Aberer et al., 2014) running four independent runs with two heated chains for at least one million generations or until the average standard deviation of split frequencies (asdsf) was ≤ 5%, indicating run convergence.
+Creating the config.nexus file exabayes needs (contents below)
+```
+begin run; 
+   numRuns 4
+   numCoupledChains 3
+end;
+```
+Running exabayes
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo00105 
+#SBATCH -J 50perc_run1
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 15:00
+#SBATCH --mem=20G
+#SBATCH -D /nesi/nobackup/uoo00105/beetles/70perc_raxml
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+#SBATCH --qos=debug
+
+/nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/yggdrasil -f /nesi/nobackup/uoo00105/beetles/50perc_raxml/50perc_raxml.phylip -m DNA -s $RANDOM -n run1 -T 12 -M 0 -c config.nexus
+
+```
