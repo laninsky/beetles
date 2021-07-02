@@ -56,6 +56,7 @@ Obtaining the 70% complete matrix from the 50% matrix
 #SBATCH --qos=debug
 
 module load Miniconda3/4.9.2
+conda init bash
 conda activate /nesi/nobackup/uoo00105/beetles/conda
 phyluce_align_get_only_loci_with_min_taxa --alignments abyss_50perc_nexus --taxa 63 --percent 0.7 --output 70perc_nexus --cores 12 --log-path logs
 ```
