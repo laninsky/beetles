@@ -38,6 +38,11 @@ sort taxa_list.txt | uniq | wc -l
 
 mv taxa_list.txt ../
 ```
+Create some of the necessary directories:
+```
+mkdir logs
+```
+
 Obtaining the 70% complete matrix from the 50% matrix
 ```
 #!/bin/bash -e
