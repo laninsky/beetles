@@ -65,3 +65,55 @@ conda init bash
 conda activate /nesi/nobackup/uoo00105/beetles/conda
 phyluce_align_get_only_loci_with_min_taxa --alignments abyss_50perc_nexus --taxa 63 --percent 0.7 --output 70perc_nexus --cores 12 --log-path logs
 ```
+
+Obtaining the concatenated files for raxml and exabayes
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo00105 
+#SBATCH -J 50perc_raxml
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 15:00
+#SBATCH --mem=20G
+#SBATCH -D /nesi/nobackup/uoo00105/beetles
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+#SBATCH --qos=debug
+
+module load Miniconda3/4.9.2
+CONDA_PATH=$(conda info | grep -i 'base environment' | awk '{print $4}')
+source $CONDA_PATH/etc/profile.d/conda.sh
+conda activate /nesi/nobackup/uoo00105/beetles/conda
+phyluce_align_concanatenate_alignments \
+    --alignments /nesi/nobackup/uoo00105/beetles/abyss_50perc_nexus \
+    --output /nesi/nobackup/uoo00105/beetles/50perc_raxml \
+    --phylip
+```
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo00105 
+#SBATCH -J 50perc_raxml
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 15:00
+#SBATCH --mem=20G
+#SBATCH -D /nesi/nobackup/uoo00105/beetles
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+#SBATCH --qos=debug
+
+module load Miniconda3/4.9.2
+CONDA_PATH=$(conda info | grep -i 'base environment' | awk '{print $4}')
+source $CONDA_PATH/etc/profile.d/conda.sh
+conda activate /nesi/nobackup/uoo00105/beetles/conda
+phyluce_align_concanatenate_alignments \
+    --alignments /nesi/nobackup/uoo00105/beetles/70perc_nexus \
+    --output /nesi/nobackup/uoo00105/beetles/70perc_raxml \
+    --phylip
+```
