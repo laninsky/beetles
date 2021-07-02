@@ -174,7 +174,7 @@ Running exabayes
 #SBATCH -c 12
 #SBATCH -t 12:00:00
 #SBATCH --mem=20G
-#SBATCH -D /nesi/nobackup/uoo00105/beetles/70perc_raxml
+#SBATCH -D /nesi/nobackup/uoo00105/beetles/50perc_raxml
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
@@ -182,4 +182,22 @@ Running exabayes
 
 /nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/yggdrasil -f /nesi/nobackup/uoo00105/beetles/50perc_raxml/50perc_raxml.phylip -m DNA -s $RANDOM -n run1 -T 12 -M 0 -c config.nexus
 
+```
+If exabayes times out, you can restat using the -r flag in place of the -n flag
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo00105 
+#SBATCH -J 50perc_run1
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 12:00:00
+#SBATCH --mem=20G
+#SBATCH -D /nesi/nobackup/uoo00105/beetles/50perc_raxml
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+
+/nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/yggdrasil -f /nesi/nobackup/uoo00105/beetles/50perc_raxml/50perc_raxml.phylip -m DNA -s $RANDOM -n run1_B -r run1 -T 12 -M 0 -c config.nexus
 ```
