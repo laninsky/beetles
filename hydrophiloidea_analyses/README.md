@@ -120,17 +120,34 @@ Running raxml on the 70% files (50% had previously been run)
 #SBATCH -J 70perc_run1
 #SBATCH --ntasks 1
 #SBATCH -c 12
-#SBATCH -t 15:00
+#SBATCH -t 1:00:00
 #SBATCH --mem=20G
 #SBATCH -D /nesi/nobackup/uoo00105/beetles/70perc_raxml
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
 #SBATCH --hint=nomultithread
-#SBATCH --qos=debug
 
 module load RAxML/8.2.12-gimkl-2020a
 raxmlHPC-PTHREADS-SSE3 -s 70perc_raxml.phylip -n run1 -m GTRCATI -f a -N 100 -x $RANDOM -p $RANDOM -T 12
+```
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo00105 
+#SBATCH -J 70perc_run2
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 1:00:00
+#SBATCH --mem=20G
+#SBATCH -D /nesi/nobackup/uoo00105/beetles/70perc_raxml
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+
+module load RAxML/8.2.12-gimkl-2020a
+raxmlHPC-PTHREADS-SSE3 -s 70perc_raxml.phylip -n run2 -m GTRCATI -f a -N 100 -x $RANDOM -p $RANDOM -T 12
 ```
 
 Installing exabayes
