@@ -87,7 +87,7 @@ module load Miniconda3/4.9.2
 CONDA_PATH=$(conda info | grep -i 'base environment' | awk '{print $4}')
 source $CONDA_PATH/etc/profile.d/conda.sh
 conda activate /nesi/nobackup/uoo00105/beetles/conda
-phyluce_align_concanatenate_alignments \
+phyluce_align_concatenate_alignments \
     --alignments /nesi/nobackup/uoo00105/beetles/abyss_50perc_nexus \
     --output /nesi/nobackup/uoo00105/beetles/50perc_raxml \
     --phylip
@@ -112,7 +112,7 @@ module load Miniconda3/4.9.2
 CONDA_PATH=$(conda info | grep -i 'base environment' | awk '{print $4}')
 source $CONDA_PATH/etc/profile.d/conda.sh
 conda activate /nesi/nobackup/uoo00105/beetles/conda
-phyluce_align_concanatenate_alignments \
+phyluce_align_concatenate_alignments \
     --alignments /nesi/nobackup/uoo00105/beetles/70perc_nexus \
     --output /nesi/nobackup/uoo00105/beetles/70perc_raxml \
     --phylip
