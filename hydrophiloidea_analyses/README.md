@@ -111,7 +111,8 @@ source $CONDA_PATH/etc/profile.d/conda.sh
 conda activate /nesi/nobackup/uoo00105/beetles/conda
 phyluce_align_concatenate_alignments --alignments /nesi/nobackup/uoo00105/beetles/70perc_nexus --output /nesi/nobackup/uoo00105/beetles/70perc_raxml --phylip
 ```
-### Running raxml on the 70% files (50% had previously been run)
+### Making trees
+Running raxml on the 70% files (50% had previously been run)
 ```
 #!/bin/bash -e
 
