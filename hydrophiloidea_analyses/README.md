@@ -132,3 +132,9 @@ Running raxml on the 70% files (50% had previously been run)
 module load RAxML/8.2.12-gimkl-2020a
 raxmlHPC-PTHREADS-SSE3 -s 70perc_raxml.phylip -n run1 -m GTRCATI -f a -N 100 -x $RANDOM -p $RANDOM -T 12
 ```
+
+Installing exabayes
+```
+wget https://cme.h-its.org/exelixis/resource/download/software/exabayes-1.5.1.tar.gz
+```
+Bayesian inference was conducted only on the unpartitioned datasets via exabayes 1.5 (Aberer et al., 2014) running four independent runs with two heated chains for at least one million generations or until the average standard deviation of split frequencies (asdsf) was ≤ 5%, indicating run convergence.
