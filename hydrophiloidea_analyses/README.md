@@ -203,3 +203,11 @@ If exabayes times out, you can restat using the -r flag in place of the -n flag
 module load GCC/9.2.0
 /nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/yggdrasil -f /nesi/nobackup/uoo00105/beetles/50perc_raxml/50perc_raxml.phylip -m DNA -s $RANDOM -n run1_B -r run1 -T 12 -M 0 -c config.nexus
 ```
+Summarising the parameter space for Exabayes using postProcParam
+```
+module load GCC/9.2.0
+/nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/postProcParam -n run1 -f ExaBayes_parameters*run1
+
+# Checking overlap in R
+
+```
