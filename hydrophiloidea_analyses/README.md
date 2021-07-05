@@ -149,6 +149,7 @@ raxmlHPC-PTHREADS-SSE3 -s 70perc_raxml.phylip -n run1 -m GTRCATI -f a -N 100 -x 
 module load RAxML/8.2.12-gimkl-2020a
 raxmlHPC-PTHREADS-SSE3 -s 70perc_raxml.phylip -n run2 -m GTRCATI -f a -N 100 -x $RANDOM -p $RANDOM -T 12
 ```
+Following runs, downloaded RAxML_bipartitions file for each run and checked for topological convergence. After confirming this, run with the best likelihood (as presented in RAxML_info) used as representative tree.  
 
 Installing exabayes
 ```
