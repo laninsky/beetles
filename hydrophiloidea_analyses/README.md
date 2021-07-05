@@ -207,7 +207,40 @@ Summarising the parameter space for Exabayes using postProcParam
 ```
 module load GCC/9.2.0
 /nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/postProcParam -n run1 -f ExaBayes_parameters*run1
+/nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/postProcParam -n run2 -f ExaBayes_parameters*run2
 
-# Checking overlap in R
+# Checking overlap of parameters between runs in R
+library(tidyverse)
+
+# Reading in file 
+data <- read_tsv("../exabayes_convergence_results_5Jul2021.txt")
+
+# Deleting superfluous read-in columns
+data <- data[,-c(13:17)]
+
+data
+## A tibble: 28 x 12
+#   paramName       mean      sd     perc5    perc25    median    perc75     per95   eSS  psrf matrix   run
+#   <chr>          <dbl>   <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl> <dbl> <dbl> <chr>  <dbl>
+# 1 alpha{0}     2.44e-1 1.39e-3   2.44e-1   2.43e-1   2.44e-1   2.45e-1   2.46e-1  5380     1 70perc     1
+# 2 r{0}(C<->…   3.51e-1 2.63e-3   3.51e-1   3.49e-1   3.51e-1   3.53e-1   3.55e-1  1710     1 70perc     1
+# 3 r{0}(C<->…   8.28e-2 1.08e-3   8.28e-2   8.21e-2   8.28e-2   8.36e-2   8.46e-2  3910     1 70perc     1
+# 4 r{0}(G<->…   6.71e-2 9.93e-4   6.71e-2   6.64e-2   6.71e-2   6.77e-2   6.87e-2  1510     1 70perc     1
+# 5 TL{0}        6.75e+0 4.03e-2   6.75e+0   6.72e+0   6.75e+0   6.78e+0   6.82e+0  5290     1 70perc     1
+# 6 pi{0}(G)     2.39e-1 1.41e-3   2.39e-1   2.38e-1   2.39e-1   2.4 e-1   2.42e-1  2490     1 70perc     1
+# 7 r{0}(A<->…   7.59e-2 1.06e-3   7.59e-2   7.52e-2   7.59e-2   7.66e-2   7.76e-2  3430     1 70perc     1
+# 8 pi{0}(A)     2.64e-1 1.46e-3   2.64e-1   2.63e-1   2.64e-1   2.65e-1   2.66e-1  2210     1 70perc     1
+# 9 LnL         -6.89e+5 8.04e+0  -6.89e+5  -6.89e+5  -6.89e+5  -6.89e+5  -6.89e+5  3240     1 70perc     1
+#10 r{0}(A<->…   1.03e-1 1.19e-3   1.03e-1   1.02e-1   1.03e-1   1.04e-1   1.05e-1  3520     1 70perc     1
+
+for (i in unique(data$paramName)) {
+  tempdata <- data[which(data$paramName==i),]
+  ggplot(tempdata) +
+    geom_boxplot(mapping=aes(x=as.factor(run), ymin=perc5, lower=perc25, middle=median, upper=perc75, max=per95),  stat = "identity") + ggtitle(i) + theme_bw() + theme(
+      plot.title = element_text(hjust=0.5))
+  ggsave(paste(i,".pdf"))
+}
+getwd()
 
 ```
+Summarising the topologies for each run
