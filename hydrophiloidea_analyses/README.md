@@ -246,10 +246,12 @@ getwd()
 ```
 Summarising the topologies for each run
 ```
+module load GCC/9.2.0
 /nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/consense -n run1 -f ExaBayes_topologies*run1
 /nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/consense -n run2 -f ExaBayes_topologies*run2
 ```
 Downloaded the newick tree files and checked for topological convergence, then merged tree files from each run:
 ```
+module load GCC/9.2.0
 /nesi/nobackup/uoo00105/beetles/exabayes-1.5.1/consense -n total -f ExaBayes_topologies*
 ```
