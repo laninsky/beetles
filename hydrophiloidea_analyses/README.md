@@ -61,7 +61,8 @@ Obtaining the 70% complete matrix from the 50% matrix
 #SBATCH --qos=debug
 
 module load Miniconda3/4.9.2
-conda init bash
+CONDA_PATH=$(conda info | grep -i 'base environment' | awk '{print $4}')
+source $CONDA_PATH/etc/profile.d/conda.sh
 conda activate /nesi/nobackup/uoo00105/beetles/conda
 phyluce_align_get_only_loci_with_min_taxa --alignments abyss_50perc_nexus --taxa 63 --percent 0.7 --output 70perc_nexus --cores 12 --log-path logs
 ```
@@ -165,16 +166,16 @@ begin run;
    numCoupledChains 3
 end;
 ```
-Running exabayes
+Running exabayes (did these steps for both the 50 and 70% complete matrix - changing directories/input files etc etc)
 ```
 #!/bin/bash -e
 
 #SBATCH -A uoo00105 
 #SBATCH -J 50perc_run1
 #SBATCH --ntasks 1
-#SBATCH -c 12
-#SBATCH -t 12:00:00
-#SBATCH --mem=20G
+#SBATCH -c 36
+#SBATCH -t 48:00:00
+#SBATCH --mem=105G
 #SBATCH -D /nesi/nobackup/uoo00105/beetles/50perc_raxml
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
@@ -192,9 +193,9 @@ If exabayes times out, you can restat using the -r flag in place of the -n flag
 #SBATCH -A uoo00105 
 #SBATCH -J 50perc_run1
 #SBATCH --ntasks 1
-#SBATCH -c 12
-#SBATCH -t 12:00:00
-#SBATCH --mem=20G
+#SBATCH -c 36
+#SBATCH -t 48:00:00
+#SBATCH --mem=105G
 #SBATCH -D /nesi/nobackup/uoo00105/beetles/50perc_raxml
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
@@ -216,7 +217,7 @@ library(tidyverse)
 # Reading in file 
 data <- read_tsv("../exabayes_convergence_results_5Jul2021.txt")
 
-# Deleting superfluous read-in columns
+# Deleting superfluous read-in columns for 70% matrix (50% matrix fine - had deleted spaces before converting to tab delimited)
 data <- data[,-c(13:17)]
 
 data
