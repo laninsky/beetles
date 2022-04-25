@@ -5,4 +5,4 @@ Baca, S.M., Alexander, A., Gustafson, G.T. and Short, A.E., 2017. Ultraconserved
 
 Gustafson, G.T., Alexander, A., Sproul, J.S., Pflug, J.M., Maddison, D.R. and Short, A.E., 2019. Ultraconserved element (UCE) probe set design: Base genome and initial design parameters critical for optimization. Ecology and Evolution.
 
-Beetles TBD
+Gustafson, G.T., Baca, S.M., Alexander, A.M. and Short, A.E., 2020. Phylogenomic analysis of the beetle suborder Adephaga with comparison of tailored and generalized ultraconserved element probe performance. Systematic Entomology, 45(3): 552-570.
