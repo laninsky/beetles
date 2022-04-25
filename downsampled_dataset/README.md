@@ -16,7 +16,8 @@ generate_downsampled("/Users/alanaalexander/Dropbox/UCE_data_for_Alana/50perc_da
 This would create 100 replicate folders within `/Users/alanaalexander/Dropbox/beetles/75_downsamples` each containing 305 fasta files sampled from the total number of fasta files available at `/Users/alanaalexander/Dropbox/UCE_data_for_Alana/50perc_data_matrix/50perc_internal_fasta`
 
 # Version history  
-v0.0: the code used in Beetles TBD, where generate_downsampled was first published.
+v0.0: the code used in the following, where generate_downsampled was first published:
+Gustafson, G.T., Baca, S.M., Alexander, A.M. and Short, A.E., 2020. Phylogenomic analysis of the beetle suborder Adephaga with comparison of tailored and generalized ultraconserved element probe performance. Systematic Entomology, 45(3): 552-570.
 
 If you want to cite the specific version of the script you used, I suggest the following as well as the pub above:  
 Alexander, A. 2019. downsampled_dataset vx.x. Available from https://github.com/laninsky/beetles/new/master/downsampled_dataset
